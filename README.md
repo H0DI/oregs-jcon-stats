@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="Manifest V3" src="https://img.shields.io/badge/manifest-v3-4c8bf5">
-  <img alt="Chrome / Edge" src="https://img.shields.io/badge/browser-chrome%20%7C%20edge-brightgreen">
+  <img alt="Chrome / Edge / Firefox" src="https://img.shields.io/badge/browser-chrome%20%7C%20edge%20%7C%20firefox-brightgreen">
   <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-none-lightgrey">
   <img alt="Latest release" src="https://img.shields.io/github/v/release/H0DI/oregs-jcon-stats">
 </p>
@@ -35,11 +35,23 @@
 
 ## 📦 Install
 
-1. Grab the latest zip from **[Releases](https://github.com/H0DI/oregs-jcon-stats/releases)** and unzip it (or use this `jconj-stats` folder directly).
+**Chrome / Edge**
+
+1. Grab the latest zip from **[Releases](https://github.com/H0DI/oregs-jcon-stats/releases)** (the `v*` tags) and unzip it (or use this `jconj-stats` folder directly).
 2. Open `chrome://extensions` (or `edge://extensions`).
 3. Enable **Developer mode** (top right).
 4. Click **Load unpacked** and select the folder.
 5. Visit [baileysnyder.com/jconj](https://baileysnyder.com/jconj/) — the accuracy chip and stats card appear automatically.
+
+**🦊 Firefox**
+
+Firefox needs a few manifest differences (signing, a required data-collection
+declaration, a different extension-ID mechanism) that don't apply to
+Chrome/Edge, so it lives on its own [`firefox` branch](https://github.com/H0DI/oregs-jcon-stats/tree/firefox)
+with its own signed releases (the `firefox-v*` tags on the
+**[Releases page](https://github.com/H0DI/oregs-jcon-stats/releases)**).
+Grab the `.xpi` from there and drag it onto `about:addons` — full install
+steps are in that branch's README.
 
 ## 🔄 Updating without losing your data
 
