@@ -14,7 +14,7 @@
     na: '#b06a3e',
     '?': '#5a5a55',
   };
-  const CLASS_LABEL = { u: 'う', ru: 'る', irv: '不規', ira: '不規', i: 'い', na: 'な', '?': '?' };
+  const CLASS_LABEL = { u: 'godan', ru: 'ichidan', irv: 'irregular', ira: 'irregular', i: 'い', na: 'な', '?': '?' };
 
   function pct(x) {
     return x == null ? '—' : `${Math.round(x * 100)}%`;

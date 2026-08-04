@@ -204,11 +204,12 @@
   justify-content: center;
   min-width: 1.35rem;
   height: 1.35rem;
-  border-radius: 0.3rem;
-  font-size: 0.68rem;
+  border-radius: 0.7rem;
+  font-size: 0.62rem;
   font-weight: 700;
   color: #16130f;
-  padding: 0 0.2rem;
+  padding: 0 0.4rem;
+  white-space: nowrap;
 }
 .jcs-word-text {
   flex: 1;
