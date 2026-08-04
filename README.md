@@ -58,6 +58,12 @@
 > (free, and can be done "unlisted" so it stays private) — ask if you want
 > help with that.
 
+> ℹ️ The zip built for AMO submission on this branch excludes `test/`
+> (Mozilla's linter flags test-only code with warnings that don't apply to
+> what actually ships) and the panel's footer has no "Run self-tests" link
+> as a result. To self-test, clone the repo and open `test/test.html`
+> directly — see below.
+
 ## 🔄 Updating without losing your data
 
 **Chrome / Edge**

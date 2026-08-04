@@ -121,9 +121,9 @@
   }
 
   function stripTags(html) {
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    return div.textContent;
+    // DOMParser instead of innerHTML: identical result, but never assigns
+    // to .innerHTML, which extension linters (rightly) flag on principle.
+    return new DOMParser().parseFromString(html, 'text/html').body.textContent;
   }
 
   /** True while the Options screen (not the question screen) is showing. */

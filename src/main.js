@@ -38,13 +38,10 @@
   }
 
   function getTestUrl() {
-    try {
-      if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.getURL) {
-        return chrome.runtime.getURL('test/test.html');
-      }
-    } catch (err) {
-      /* not running as an installed extension */
-    }
+    // test/ isn't bundled in this (Firefox) build — it's excluded so the
+    // AMO submission has no test-only lint warnings — so there's no
+    // in-extension self-test link here. Run the self-tests from the repo
+    // source (test/test.html) instead.
     return null;
   }
 
