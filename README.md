@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="Manifest V3" src="https://img.shields.io/badge/manifest-v3-4c8bf5">
-  <img alt="Chrome / Edge" src="https://img.shields.io/badge/browser-chrome%20%7C%20edge-brightgreen">
+  <img alt="Chrome / Edge / Firefox" src="https://img.shields.io/badge/browser-chrome%20%7C%20edge%20%7C%20firefox-brightgreen">
   <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-none-lightgrey">
   <img alt="Latest release" src="https://img.shields.io/github/v/release/H0DI/oregs-jcon-stats">
 </p>
@@ -35,19 +35,46 @@
 
 ## 📦 Install
 
+**Chrome / Edge**
+
 1. Grab the latest zip from **[Releases](https://github.com/H0DI/oregs-jcon-stats/releases)** and unzip it (or use this `jconj-stats` folder directly).
 2. Open `chrome://extensions` (or `edge://extensions`).
 3. Enable **Developer mode** (top right).
 4. Click **Load unpacked** and select the folder.
 5. Visit [baileysnyder.com/jconj](https://baileysnyder.com/jconj/) — the accuracy chip and stats card appear automatically.
 
+**Firefox**
+
+1. Grab the latest zip, unzip it (or use this `jconj-stats` folder directly).
+2. Open `about:debugging#/runtime/this-firefox`.
+3. Click **Load Temporary Add-on…** and select `manifest.json` inside the folder.
+4. Visit [baileysnyder.com/jconj](https://baileysnyder.com/jconj/).
+
+> ⚠️ Firefox only allows unsigned extensions to be loaded **temporarily** —
+> it's removed the moment Firefox restarts, and you'll need to repeat step 3
+> next time. This is a Firefox restriction on unsigned add-ons, not
+> something this extension can work around. For a permanent install you'd
+> need to sign the extension through [addons.mozilla.org](https://addons.mozilla.org/developers/)
+> (free, and can be done "unlisted" so it stays private) — ask if you want
+> help with that.
+
 ## 🔄 Updating without losing your data
+
+**Chrome / Edge**
 
 > Chrome derives an unpacked extension's ID from the **absolute folder path**
 > it was loaded from — and that's what your practice history is scoped to.
 
 - ✅ **Do**: unzip the new version **into the same folder**, overwriting the old files, then click the reload icon (⟳) on the extension's card in `chrome://extensions`.
 - ❌ **Don't**: unzip into a *different* folder and "Load unpacked" that instead — that's a new ID, meaning empty storage and a duplicate entry in `chrome://extensions`.
+
+**Firefox**
+
+Since a temporary add-on is wiped on every restart anyway, there's no
+"preserve data across updates" step here — your stats only ever last for
+the current Firefox session. Overwrite the files in the same folder before
+re-loading if you want the *current session's* data to survive a reload
+(not a restart).
 
 <details>
 <summary><h2>🔧 How it works</h2></summary>
