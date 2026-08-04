@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Oreg's jcon stats",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adds accuracy percentage, per-form/per-word breakdowns, and history stats to the Japanese Conjugation Practice site (baileysnyder.com/jconj).",
   "icons": {
     "16": "icons/icon16.png",
