@@ -45,24 +45,30 @@
 
 **Firefox**
 
-1. Grab the latest zip, unzip it (or use this `jconj-stats` folder directly).
-2. Open `about:debugging#/runtime/this-firefox`.
-3. Click **Load Temporary Add-on…** and select `manifest.json` inside the folder.
-4. Visit [baileysnyder.com/jconj](https://baileysnyder.com/jconj/).
+1. Download the signed `.xpi` from **[Releases](https://github.com/H0DI/oregs-jcon-stats/releases)** (the `firefox-v*` tags — the plain `v*` ones are the Chrome/Edge zip).
+2. Drag it onto `about:addons` in Firefox (or `File → Open File…` and pick it).
+3. Visit [baileysnyder.com/jconj](https://baileysnyder.com/jconj/).
 
-> ⚠️ Firefox only allows unsigned extensions to be loaded **temporarily** —
-> it's removed the moment Firefox restarts, and you'll need to repeat step 3
-> next time. This is a Firefox restriction on unsigned add-ons, not
-> something this extension can work around. For a permanent install you'd
-> need to sign the extension through [addons.mozilla.org](https://addons.mozilla.org/developers/)
-> (free, and can be done "unlisted" so it stays private) — ask if you want
-> help with that.
+Being signed by Mozilla (via [addons.mozilla.org](https://addons.mozilla.org/developers/), self-distributed/unlisted), this installs **permanently** — no dev flags, no "removed on restart."
 
-> ℹ️ The zip built for AMO submission on this branch excludes `test/`
-> (Mozilla's linter flags test-only code with warnings that don't apply to
-> what actually ships) and the panel's footer has no "Run self-tests" link
-> as a result. To self-test, clone the repo and open `test/test.html`
-> directly — see below.
+<details>
+<summary>Building an unsigned dev build instead (<code>about:debugging</code>)</summary>
+
+Useful for testing local changes without waiting on Mozilla's signing turnaround:
+
+1. Clone/download this branch's source and open `about:debugging#/runtime/this-firefox`.
+2. Click **Load Temporary Add-on…** and select `manifest.json` in the folder.
+
+Firefox only allows *unsigned* extensions to load this way, and only **temporarily** — it's removed the moment Firefox restarts, and you'll need to repeat step 2 next time. That's a Firefox restriction on unsigned add-ons, not something this extension can work around; use the signed `.xpi` above for anything you want to keep.
+
+</details>
+
+> ℹ️ On this branch, the panel's footer has no "Run self-tests" link —
+> the signed `.xpi` doesn't bundle `test/` at all (Mozilla's linter flags
+> test-only code with warnings that don't apply to what ships), and the
+> in-extension link is disabled unconditionally so behavior doesn't
+> differ between the signed build and a local dev-load. To self-test,
+> clone the repo and open `test/test.html` directly — see below.
 
 ## 🔄 Updating without losing your data
 
