@@ -6,8 +6,7 @@
 
 <p align="center">
   Accuracy, streaks, and per-word/per-form breakdowns for
-  <a href="https://baileysnyder.com/jconj/">baileysnyder.com/jconj</a> —
-  the site that otherwise only tells you your current streak.
+  <a href="https://baileysnyder.com/jconj/">baileysnyder.com/jconj</a>
 </p>
 
 <p align="center">
