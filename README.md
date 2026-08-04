@@ -31,13 +31,29 @@ settings, `localStorage`, or question flow. All data is stored locally via
 4. Visit https://baileysnyder.com/jconj/ — the accuracy figure and stats
    card should appear automatically.
 
+## Updating without losing your data
+
+Chrome derives an unpacked extension's ID from the **absolute folder path**
+it was loaded from, and your practice history lives in `chrome.storage.local`,
+which is scoped to that ID. So:
+
+- **Extract the new release into the same folder** you originally used for
+  "Load unpacked" (overwriting the old files), then click the reload icon
+  (⟳) on the extension's card in `chrome://extensions`. Your data is
+  untouched — a code reload doesn't touch stored data.
+- **Don't** extract the new version into a different folder and "Load
+  unpacked" that instead — a new path means a new extension ID, which means
+  empty storage (a fresh start), and you'd end up with two separate entries
+  in `chrome://extensions`. If that happens by accident, remove the old
+  entry and go back to using the original folder.
+
 ## How it works
 
 - `src/parse.js` reads the current question and the graded result straight
   out of the site's DOM (word, conjugation form, negative/politeness,
   correct/incorrect, your answer vs. the expected answer).
 - `src/words.js` is a static map of the site's ~109 vocabulary words to
-  their word class (う-verb / る-verb / irregular / い-adjective /
+  their word class (godan / ichidan / irregular verb / い-adjective /
   な-adjective), extracted from the site's own JS bundle — see below. The
   site itself only reveals a word's class after you get it wrong, so
   shipping the map lets every answer be classified.
