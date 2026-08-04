@@ -1,53 +1,57 @@
-# Oreg's jcon stats
+<p align="center">
+  <img src="icons/icon128.png" width="96" height="96" alt="Oreg's jcon stats logo">
+</p>
 
-A Chrome/Edge extension that adds practice statistics to
-[baileysnyder.com/jconj](https://baileysnyder.com/jconj/) — a Japanese
-conjugation drill site that otherwise tracks only current/max streak.
+<h1 align="center">Oreg's jcon stats</h1>
 
-It adds:
+<p align="center">
+  Accuracy, streaks, and per-word/per-form breakdowns for
+  <a href="https://baileysnyder.com/jconj/">baileysnyder.com/jconj</a> —
+  the site that otherwise only tells you your current streak.
+</p>
 
-- A live **accuracy %** figure next to the site's own streak counters.
-- An expandable **stats card** below the practice box with four tabs:
-  - **Overview** — all-time accuracy, totals, streaks, average answer time,
-    answered today, and your top-5 weakest areas.
-  - **Forms** — accuracy broken down by conjugation form (Past, て-form,
-    Volitional, Passive, Causative, Potential, Imperative,
-    Causative-Passive, Present), plus Affirmative/Negative and
-    Plain/Polite roll-ups.
-  - **Words** — the specific words you miss most, with word class, accuracy,
-    attempt count, and your most recent wrong answer vs. the expected one.
-  - **History** — answers-per-day and accuracy over the last 14 days.
+<p align="center">
+  <img alt="Manifest V3" src="https://img.shields.io/badge/manifest-v3-4c8bf5">
+  <img alt="Chrome / Edge" src="https://img.shields.io/badge/browser-chrome%20%7C%20edge-brightgreen">
+  <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-none-lightgrey">
+  <img alt="Latest release" src="https://img.shields.io/github/v/release/H0DI/oregs-jcon-stats">
+</p>
 
-The extension is **read-only** with respect to the site: it only observes
-the page via a `MutationObserver` and never changes the site's own
-settings, `localStorage`, or question flow. All data is stored locally via
-`chrome.storage.local` and never leaves your machine.
+---
 
-## Install (unpacked)
+## ✨ What it adds
 
-1. Open `chrome://extensions` (or `edge://extensions`).
-2. Enable **Developer mode** (top right).
-3. Click **Load unpacked** and select this `jconj-stats` folder.
-4. Visit https://baileysnyder.com/jconj/ — the accuracy figure and stats
-   card should appear automatically.
+| | |
+|---|---|
+| 🎯 **Accuracy chip** | A live accuracy % right next to the site's own Current/Max Streak counters. |
+| 📊 **Overview** | All-time accuracy, totals, streaks, average answer time, answered today, and your top-5 weakest areas. |
+| 🈴 **Forms** | Accuracy per conjugation form — Past, て-form, Volitional, Passive, Causative, Potential, Imperative, Causative-Passive, Present — plus Affirmative/Negative and Plain/Polite roll-ups. |
+| 📝 **Words** | The specific words you keep missing, with word class, accuracy, attempt count, and your most recent wrong answer vs. the correct one. |
+| 📈 **History** | Answers-per-day and accuracy over the last 14 days. |
 
-## Updating without losing your data
+> **Read-only, always.** It only *observes* the page via a `MutationObserver` —
+> it never touches the site's own settings, `localStorage`, or question flow.
+> Everything is stored locally in `chrome.storage.local` and never leaves
+> your machine.
 
-Chrome derives an unpacked extension's ID from the **absolute folder path**
-it was loaded from, and your practice history lives in `chrome.storage.local`,
-which is scoped to that ID. So:
+## 📦 Install
 
-- **Extract the new release into the same folder** you originally used for
-  "Load unpacked" (overwriting the old files), then click the reload icon
-  (⟳) on the extension's card in `chrome://extensions`. Your data is
-  untouched — a code reload doesn't touch stored data.
-- **Don't** extract the new version into a different folder and "Load
-  unpacked" that instead — a new path means a new extension ID, which means
-  empty storage (a fresh start), and you'd end up with two separate entries
-  in `chrome://extensions`. If that happens by accident, remove the old
-  entry and go back to using the original folder.
+1. Grab the latest zip from **[Releases](https://github.com/H0DI/oregs-jcon-stats/releases)** and unzip it (or use this `jconj-stats` folder directly).
+2. Open `chrome://extensions` (or `edge://extensions`).
+3. Enable **Developer mode** (top right).
+4. Click **Load unpacked** and select the folder.
+5. Visit [baileysnyder.com/jconj](https://baileysnyder.com/jconj/) — the accuracy chip and stats card appear automatically.
 
-## How it works
+## 🔄 Updating without losing your data
+
+> Chrome derives an unpacked extension's ID from the **absolute folder path**
+> it was loaded from — and that's what your practice history is scoped to.
+
+- ✅ **Do**: unzip the new version **into the same folder**, overwriting the old files, then click the reload icon (⟳) on the extension's card in `chrome://extensions`.
+- ❌ **Don't**: unzip into a *different* folder and "Load unpacked" that instead — that's a new ID, meaning empty storage and a duplicate entry in `chrome://extensions`.
+
+<details>
+<summary><h2>🔧 How it works</h2></summary>
 
 - `src/parse.js` reads the current question and the graded result straight
   out of the site's DOM (word, conjugation form, negative/politeness,
@@ -65,7 +69,10 @@ which is scoped to that ID. So:
   event log — nothing is stored pre-aggregated.
 - `src/panel.js` renders the streak-row chip and the stats card.
 
-## Regenerating `src/words.js`
+</details>
+
+<details>
+<summary><h2>🈶 Regenerating <code>src/words.js</code></h2></summary>
 
 If the site adds new vocabulary, the shipped word map will fall behind
 (the extension still works — it falls back to "Unknown" class, or the
@@ -77,14 +84,20 @@ class revealed on a wrong answer). To regenerate:
 4. It prints a ready-to-paste `WORD_CLASS` object and warns about any
    duplicate/missing entries. Paste the output into `src/words.js`.
 
-## Running the self-tests
+</details>
+
+<details>
+<summary><h2>🧪 Running the self-tests</h2></summary>
 
 Open `chrome-extension://<extension-id>/test/test.html` (the id is shown
 on `chrome://extensions` once loaded), or open `test/test.html` directly
 in a browser tab — it has no dependency on the live site and runs entirely
 against captured fixtures.
 
-## Project layout
+</details>
+
+<details>
+<summary><h2>📁 Project layout</h2></summary>
 
 ```
 manifest.json          MV3 manifest
@@ -102,5 +115,6 @@ test/test.html            self-test runner page
 tools/extract-words.js  console snippet to regenerate src/words.js
 ```
 
-No build step, no npm dependencies — every file is a plain script loaded
-directly by the manifest and by the test runner.
+</details>
+
+<p align="center"><sub>No build step, no npm dependencies — every file is a plain script loaded directly by the manifest and by the test runner.</sub></p>
