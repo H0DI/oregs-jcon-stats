@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>jconj Stats — self-tests</title>
+<style>
+  body { font-family: "Open Sans", Arial, sans-serif; background: #22221f; color: #e8e8e8; padding: 1.5rem; }
+  h1 { font-size: 1.1rem; }
+  #summary { font-size: 1rem; margin: 0.75rem 0; padding: 0.5rem 0.75rem; border-radius: 0.4rem; }
+  #summary.pass { background: #0b3d0b; }
+  #summary.fail { background: #4a0b0b; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { padding: 0.3rem 0.5rem; border-radius: 0.3rem; margin-bottom: 0.15rem; font-size: 0.85rem; }
+  li.pass { background: #1c2c1c; }
+  li.fail { background: #2c1c1c; }
+  .err { color: #ff9a9a; display: block; margin-top: 0.15rem; font-family: monospace; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<h1>jconj Stats — self-tests</h1>
+<div id="summary">Running…</div>
+<ul id="results"></ul>
+
+<script src="../src/words.js"></script>
+<script src="../src/parse.js"></script>
+<script src="../src/stats.js"></script>
+<script src="../src/store.js"></script>
+<script src="fixtures.js"></script>
+<script src="tests.js"></script>
+<script>
+  const results = JCS.TestRunner.run();
+  const passCount = results.filter((r) => r.pass).length;
+  const failCount = results.length - passCount;
+
+  const summary = document.getElementById('summary');
+  summary.textContent = `${passCount}/${results.length} passed` + (failCount ? `, ${failCount} FAILED` : '');
+  summary.className = failCount ? 'fail' : 'pass';
+
+  const list = document.getElementById('results');
+  results.forEach((r) => {
+    const li = document.createElement('li');
+    li.className = r.pass ? 'pass' : 'fail';
+    li.textContent = `${r.pass ? '✓' : '✗'} ${r.name}`;
+    if (!r.pass) {
+      const err = document.createElement('span');
+      err.className = 'err';
+      err.textContent = r.error;
+      li.appendChild(err);
+    }
+    list.appendChild(li);
+  });
+
+  // Expose for programmatic inspection (e.g. via the browser tool).
+  window.__JCS_TEST_RESULTS__ = { passCount, failCount, total: results.length, results };
+</script>
+</body>
+</html>

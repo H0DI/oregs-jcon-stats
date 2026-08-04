@@ -1,0 +1,285 @@
+/* jconj Stats — styled to match the host page's own palette:
+   page #22221f, card #2c2b29, text #e8e8e8, "Open Sans" font. */
+
+/* Turn the site's float-based left/current/right streak row into a proper
+   3-column layout so our accuracy chip can sit centered between the site's
+   own current/max streak counters without fighting the float layout. */
+#streak-container {
+  display: flex !important;
+  align-items: baseline;
+  justify-content: space-between;
+}
+#streak-container #current-streak,
+#streak-container #max-streak {
+  float: none !important;
+}
+/* The chip is DOM-appended after both site counters (we only ever add to
+   the end of #streak-container), so use flex order to visually place it
+   between them regardless of DOM position. */
+#streak-container #current-streak {
+  order: 1;
+}
+#streak-container #max-streak {
+  order: 3;
+}
+.jcs-accuracy-chip {
+  order: 2;
+  flex: 1;
+  text-align: center;
+}
+.jcs-accuracy-chip p {
+  margin: 0;
+}
+.jcs-accuracy-chip p:first-child {
+  font-size: 0.65rem;
+}
+.jcs-accuracy-chip #jcs-accuracy-text {
+  font-size: 1rem;
+  color: #e8e8e8;
+}
+
+.jcs-card {
+  background: #2c2b29;
+  border-radius: 0.64rem;
+  margin: 0.6rem;
+  box-shadow: 0.3rem 0.3rem 0.36rem #1c1c1c;
+  color: #e8e8e8;
+  font-family: "Open Sans", Arial, "Noto Sans JP", sans-serif;
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+
+.jcs-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  user-select: none;
+}
+.jcs-card-title {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.jcs-card-summary {
+  flex: 1;
+  color: #b7b7b2;
+  font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.jcs-toggle {
+  background: none;
+  border: none;
+  color: #e8e8e8;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+}
+
+.jcs-card-body {
+  border-top: 1px solid #3a3936;
+  padding: 0.6rem 0.7rem 0.7rem;
+}
+.jcs-card.jcs-collapsed .jcs-card-body {
+  display: none;
+}
+
+.jcs-tabs {
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+.jcs-tab {
+  background: #201f1d;
+  border: 1px solid #3a3936;
+  color: #cfcfca;
+  border-radius: 0.4rem;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.jcs-tab:hover {
+  border-color: #5a5a55;
+}
+.jcs-tab-active {
+  background: #00b4f0;
+  border-color: #00b4f0;
+  color: #10201f;
+  font-weight: 600;
+}
+
+.jcs-subhead {
+  margin: 0.7rem 0 0.35rem;
+  font-size: 0.78rem;
+  color: #b7b7b2;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.jcs-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.2rem, 1fr));
+  gap: 0.4rem;
+}
+.jcs-tile {
+  background: #201f1d;
+  border-radius: 0.4rem;
+  padding: 0.45rem 0.5rem;
+  text-align: center;
+}
+.jcs-tile-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.jcs-tile-label {
+  font-size: 0.68rem;
+  color: #b7b7b2;
+  margin-top: 0.1rem;
+}
+
+.jcs-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.jcs-bar-row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 4.4rem;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+}
+.jcs-bar-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jcs-bar-track {
+  background: #201f1d;
+  border-radius: 0.3rem;
+  height: 0.5rem;
+  overflow: hidden;
+}
+.jcs-bar-fill {
+  background: #00b4f0;
+  height: 100%;
+}
+.jcs-bar-value {
+  text-align: right;
+  white-space: nowrap;
+}
+.jcs-bar-n {
+  color: #8f8f8a;
+}
+
+.jcs-empty {
+  color: #8f8f8a;
+  font-size: 0.78rem;
+  padding: 0.4rem 0;
+}
+
+.jcs-words {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+.jcs-word-row {
+  background: #201f1d;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.55rem;
+}
+.jcs-word-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.jcs-class-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #16130f;
+  padding: 0 0.2rem;
+}
+.jcs-word-text {
+  flex: 1;
+  font-size: 0.95rem;
+}
+.jcs-word-acc {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.jcs-word-miss {
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  color: #b7b7b2;
+}
+.jcs-wrong {
+  color: #ff8b8b;
+  text-decoration: line-through;
+}
+.jcs-right {
+  color: #8fd98f;
+}
+
+.jcs-history-summary {
+  font-size: 0.75rem;
+  color: #b7b7b2;
+  margin-bottom: 0.4rem;
+}
+.jcs-history {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+  height: 6rem;
+}
+.jcs-day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+.jcs-day-bar {
+  width: 100%;
+  min-height: 2px;
+  border-radius: 0.15rem 0.15rem 0 0;
+}
+.jcs-day-label {
+  font-size: 0.55rem;
+  color: #8f8f8a;
+  margin-top: 0.2rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.jcs-card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.7rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #3a3936;
+}
+.jcs-link-btn {
+  background: none;
+  border: none;
+  color: #00b4f0;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+.jcs-link-btn:hover {
+  text-decoration: underline;
+}
